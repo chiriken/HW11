@@ -8,7 +8,11 @@
             //task 2//
             phoneSystem(1, 2200);
             //task 3//
-            deliveryTime(50);
+            int deliveryDays = deliveryTime(-555);
+               if (deliveryDays != -1) {
+                   System.out.println("Потребуется " + deliveryDays + " дней");
+               }
+
         }
 
         //task 1//
@@ -23,34 +27,25 @@
         //task 2//
         public static void phoneSystem(int clientOS, int clientDeviceYear) {
             if (clientOS == 0) {
-                if (clientDeviceYear >= 2015) {
-                    System.out.println("Установите версию приложения для iOS по ссылке");
-                } else {
-                    System.out.println("Установите облегченную версию приложения для iOS по ссылке");
-                }
+                System.out.println(clientDeviceYear >= 2015 ? "Установите версию приложения для iOS по ссылке" : "Установите облегченную версию приложения для iOS по ссылке");
             } else if (clientOS == 1) {
-                if (clientDeviceYear >= 2015) {
-                    System.out.println("Установите версию приложения для Android  по ссылке");
-                } else {
-                    System.out.println("Установите облегченную версию приложения для Android по ссылке");
-                }
+                System.out.println(clientDeviceYear >= 2015 ? "Установите версию приложения для Android по ссылке" : "Установите облегченную версию приложения для Android по ссылке");
             } else {
                 System.out.println("Неподдерживаемая операционная система");
             }
         }
 
         //task 3//
-        public static void deliveryTime(int deliveryDistance) {
-            if (deliveryDistance < 0) {
-                System.out.println("Неверная дистанция доставки");
+        public static int deliveryTime(int deliveryDistance) {
+            if (deliveryDistance < 0 || deliveryDistance > 100) { // Combined condition
+                System.out.println(deliveryDistance < 0 ? "Неверная дистанция доставки" : "Доставки нет за пределы 100 км");
+                return -1;
             } else if (deliveryDistance < 20) {
-                System.out.println("Потребуется 1 день");
+                return 1;
             } else if (deliveryDistance < 60) {
-                System.out.println("Потребуется 2 дня");
-            } else if (deliveryDistance <= 100) {
-                System.out.println("Потребуется 3 дня");
-            } else {
-                System.out.println("Доставки нет за пределы 100 км(((");
+                return 2;
+            } else { // deliveryDistance <= 100
+                return 3;
             }
 
 
